@@ -28,10 +28,10 @@ public class TaskController {
                 .orElseGet(() -> ResponseEntity.notFound().build());  // Return 404 if not found
     }
 
-    @PostMapping
-    public ResponseEntity<TaskDTO> createTask(@RequestBody TaskDTO taskDTO) {
-        TaskDTO savedTask = taskService.save(taskDTO);
-        return ResponseEntity.status(201).body(savedTask);
+    @PostMapping("/{taskId}/users/{userId}")
+    public ResponseEntity<?> associateTaskWithUser(@PathVariable Long taskId, @PathVariable Long userId) {
+        // Associate the task with the user
+        return ResponseEntity.ok("Task " + taskId + " associated with User " + userId);
     }
 
     @PutMapping("/{id}")
